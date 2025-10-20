@@ -4,9 +4,6 @@ on:
   repository_dispatch:
   workflow_dispatch:
     inputs:
-      dockerfile_content:
-        description: "Dockerfile"
-        required: true
       image:
         description: "Docker image to download (e.g., nginx:latest)"
         required: true
