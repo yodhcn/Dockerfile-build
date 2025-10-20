@@ -36,7 +36,7 @@ jobs:
 
       - name: prepare Dockerfile
         run: |
-          echo "FROM python:3.12  WORKDIR /app \n RUN  pip install --no-cache-dir evalscope && pip install --no-cache-dir 'evalscope[rag]' \n CMD [bash]" > Dockerfile
+          echo -e "FROM python:3.12\n\nWORKDIR /app\n\nRUN pip install --no-cache-dir evalscope && pip install --no-cache-dir 'evalscope[rag]'\n\nCMD [\"bash\"]" > Dockerfile
 
       - name: generate filename
         id: filename
