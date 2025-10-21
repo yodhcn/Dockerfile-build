@@ -36,7 +36,7 @@ jobs:
 
       - name: prepare Dockerfile
         run: |
-          echo -e "FROM python:3.12\n\nWORKDIR /app\n\nRUN pip install --no-cache-dir evalscope && pip install --no-cache-dir 'evalscope[rag]'\n\nCMD [\"bash\"]" > Dockerfile
+          echo -e "FROM python:3.12\n\nWORKDIR /app\n\nRUN apt-get update && apt-get install -y libmagic-dev && rm -rf /var/lib/apt/lists/* && \ pip install --no-cache-dir evalscope && pip install --no-cache-dir 'evalscope[rag]' && pip install --no-cache-dir unstructured && pip install --no-cache-dir 'unstructured[md]'\n\nCMD [\"bash\"]" > Dockerfile
 
       - name: generate filename
         id: filename
