@@ -36,7 +36,28 @@ jobs:
 
       - name: prepare Dockerfile
         run: |
-          echo -e "FROM python:3.12\n\nWORKDIR /app\n\nRUN apt-get update && apt-get install -y libmagic-dev && rm -rf /var/lib/apt/lists/* && pip install --no-cache-dir evalscope && pip install --no-cache-dir 'evalscope[rag]' && pip install --no-cache-dir unstructured && pip install --no-cache-dir 'unstructured[md]' && pip install --no-cache-dir 'langchain-unstructured[local]'\n\nCMD [\"bash\"]" > Dockerfile
+          cat > Dockerfile << 'EOF'
+          FROM python:3.10-slim
+      
+          ENV PYTHONDONTWRITEBYTECODE=1
+          ENV PYTHONUNBUFFERED=1
+      
+          WORKDIR /workspace
+      
+          RUN apt-get update && apt-get install -y \
+              git \
+              build-essential \
+              && rm -rf /var/lib/apt/lists/*
+      
+          RUN git clone https://github.com/open-compass/opencompass.git
+      
+          WORKDIR /workspace/opencompass
+      
+          RUN pip install --upgrade pip \
+              && pip install -e .
+      
+          CMD ["bash"]
+          EOF
 
       - name: generate filename
         id: filename
