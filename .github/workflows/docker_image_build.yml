@@ -43,6 +43,7 @@ jobs:
       
           RUN pip install --upgrade pip \
               && pip install rasa==3.6.21
+              && pip install jieba
       
           CMD ["bash"]
           EOF
