@@ -41,7 +41,8 @@ jobs:
           
           WORKDIR /workspace
       
-          RUN apt install rustc \
+          RUN apt update \
+              && apt install rustc \
               && apt install cargo \
               && pip install --upgrade pip \
               && pip install rasa[full]
