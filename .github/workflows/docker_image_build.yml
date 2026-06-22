@@ -41,11 +41,15 @@ jobs:
           
           WORKDIR /workspace
       
-          RUN apt update \
-              && apt install rustc \
+          RUN apt-get update \
+              && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+                rustc \
+                cargo \
+                build-essential \
               && apt install cargo \
               && pip install --upgrade pip \
-              && pip install rasa[full]
+              && pip install --no-cache-dir rasa[full] \
+              && rm -rf /var/lib/apt/lists/*
       
           CMD ["bash"]
           EOF
