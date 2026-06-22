@@ -7,7 +7,7 @@ on:
       image:
         description: "Docker image to download (e.g., nginx:latest)"
         required: true
-        default: "rasa:3.6.21"
+        default: "rasa:3"
       cleanup:
         description: "Whether to clean up disk space (true or false)"
         required: true
