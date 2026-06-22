@@ -41,9 +41,10 @@ jobs:
           
           WORKDIR /workspace
       
-          RUN pip install --upgrade pip \
-              && pip install rasa==3.6.21 \
-              && pip install jieba
+          RUN apt install rustc \
+              && apt install cargo \
+              && pip install --upgrade pip \
+              && pip install rasa[full]
       
           CMD ["bash"]
           EOF
