@@ -7,7 +7,7 @@ on:
       image:
         description: "Docker image to download (e.g., nginx:latest)"
         required: true
-        default: "evalscope:latest"
+        default: "rasa:3.6.21"
       cleanup:
         description: "Whether to clean up disk space (true or false)"
         required: true
@@ -37,24 +37,12 @@ jobs:
       - name: prepare Dockerfile
         run: |
           cat > Dockerfile << 'EOF'
-          FROM python:3.10-slim
-      
-          ENV PYTHONDONTWRITEBYTECODE=1
-          ENV PYTHONUNBUFFERED=1
-      
+          FROM python:3.9-slim
+          
           WORKDIR /workspace
       
-          RUN apt-get update && apt-get install -y \
-              git \
-              build-essential \
-              && rm -rf /var/lib/apt/lists/*
-      
-          RUN git clone https://github.com/open-compass/opencompass.git
-      
-          WORKDIR /workspace/opencompass
-      
           RUN pip install --upgrade pip \
-              && pip install -e .
+              && pip install rasa==3.6.21
       
           CMD ["bash"]
           EOF
