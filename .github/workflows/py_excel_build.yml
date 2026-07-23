@@ -1,4 +1,4 @@
-name: docker_image_build
+name: py_excel_build
 
 on:
   repository_dispatch:
