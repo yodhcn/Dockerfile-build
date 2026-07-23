@@ -42,7 +42,7 @@ jobs:
           WORKDIR /workspace
       
           RUN pip install --upgrade pip \
-              && pip install --no-cache-dir pandas openpyxl
+              && pip install --no-cache-dir pandas openpyxl requests
 
           CMD ["bash"]
           EOF
